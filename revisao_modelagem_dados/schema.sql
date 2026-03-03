@@ -115,7 +115,7 @@ INSERT INTO anexo (descricao, arquivo, requerimento_id) VALUES
 -- Consultas
 -- =========================
 
--- 1. Listar todos os requerimentos com nome do aluno
+-- Listar todos os requerimentos com nome do aluno
 SELECT 
     usuario.nome AS aluno_nome,
     requerimento.id AS requerimento_id,
@@ -127,7 +127,7 @@ INNER JOIN aluno
 INNER JOIN usuario 
     ON usuario.id = aluno.usuario_id;
 
--- 2. Listar requerimentos com descrição do tipo
+-- Listar requerimentos com descrição do tipo
 SELECT 
     requerimento.id AS requerimento_codigo,
     tipo_requerimento.descricao AS descricao_requerimento
@@ -136,7 +136,7 @@ LEFT JOIN tipo_requerimento
     ON tipo_requerimento.id = requerimento.tipo_requerimento_id;
 
 
--- 3. Listar requerimentos com nome do aluno e tipo
+-- Listar requerimentos com nome do aluno e tipo
 SELECT
     usuario.nome,
     tipo_requerimento.descricao
@@ -148,5 +148,75 @@ INNER JOIN requerimento
 INNER JOIN tipo_requerimento
     ON tipo_requerimento.id = requerimento.tipo_requerimento_id;
 
+-- ===================
+-- Exercícios da Lista
+-- ===================
+-- 1. Liste matrícula e nome do aluno
+SELECT 
+    usuario.nome AS user,
+    aluno.matricula
+FROM usuario 
+INNER JOIN aluno
+    ON usuario.id = aluno.usuario_id;
 
--- 4. Listar histórico com nome do servidor
+-- 2. Mesmo exercício usando USING. -> (considerando ajuste estrutural para chave compatível)
+-- Para isso, é necessário renomear aluno.usuario_id para id (não recomendado semanticamente), poderia usar:
+ALTER TABLE aluno 
+RENAME COLUMN usuario_id TO id;
+-- ==================
+-- Em seguida usamos:
+-- ==================
+SELECT 
+    usuario.nome AS user,
+    aluno.matricula
+FROM usuario
+INNER JOIN aluno
+USING (id);
+
+-- 3.  Liste alunos e curso.
+SELECT
+    usuario.nome AS user,
+    aluno.matricula,
+    curso.nome AS nome_curso
+FROM usuario
+INNER JOIN aluno
+    ON usuario.id = aluno.usuario_id
+INNER JOIN curso
+    ON curso.id = aluno.curso_id;
+
+-- 4. Liste requerimentos com tipo (INNER JOIN).
+SELECT
+    tipo_requerimento.descricao,
+    requerimento.status
+FROM tipo_requerimento
+INNER JOIN requerimento
+    ON tipo_requerimento.id = requerimento.tipo_requerimento_id;
+
+-- 5. LEFT JOIN -> alunos e requerimentos.
+SELECT 
+    usuario.nome,
+    requerimento.data_hora_abertura,
+    tipo_requerimento.descricao
+FROM usuario
+INNER JOIN aluno
+    ON usuario.id = aluno.usuario_id
+LEFT JOIN requerimento
+    ON aluno.matricula = requerimento.aluno_matricula
+LEFT JOIN tipo_requerimento
+    ON tipo_requerimento.id = requerimento.tipo_requerimento_id;
+
+-- 6. Liste alunos sem requerimento -> (LEFT + IS NULL).
+SELECT 
+    usuario.nome,
+    requerimento.data_hora_abertura,
+    tipo_requerimento.descricao
+FROM usuario
+INNER JOIN aluno
+    ON usuario.id = aluno.usuario_id
+LEFT JOIN requerimento
+    ON aluno.matricula = requerimento.aluno_matricula
+LEFT JOIN tipo_requerimento
+    ON tipo_requerimento.id = requerimento.tipo_requerimento_id
+WHERE requerimento.aluno_matricula IS NULL;
+
+-- 7. RIGHT JOIN -> requerimentos e anexos
