@@ -220,3 +220,151 @@ LEFT JOIN tipo_requerimento
 WHERE requerimento.aluno_matricula IS NULL;
 
 -- 7. RIGHT JOIN -> requerimentos e anexos
+-- Case Funciona como um IF dentro do SQL
+/*
+    CASE
+        WHEN anexo.descricao IS NULL THEN 'sem descricao'
+        ELSE anexo.descricao
+    END
+
+    --//--
+
+    if descricao == NULL:
+        return "sem descricao"
+    else:
+        return descricao
+*/
+SELECT requerimento_id,
+    CASE
+        WHEN anexo.descricao is NULL THEN 'sem descricao'
+    ELSE anexo.descricao 
+END as descricao -- Aqui Definimos o nome da Coluna do Resultado
+FROM 
+    requerimento LEFT JOIN anexo on (requerimento.id = anexo.requerimento_id);
+
+-- Versão alternativa com COALESCE()
+-- COALESCE(valor, substituto)
+-- ==> se valor for NULL usa-se substituto
+SELECT
+    anexo.requerimento_id,
+    COALESCE(anexo.descricao, 'sem descricao') AS descricao
+FROM requerimento
+LEFT JOIN anexo
+    ON requerimento_id = anexo.requerimento_id; 
+
+-- 8. FULL JOIN aluno e requerimento.
+SELECT
+    aluno.matricula,
+    usuario.nome,
+    usuario.cpf
+FROM aluno
+INNER JOIN usuario
+    ON usuario.id = aluno.usuario_id
+FULL JOIN requerimento
+    ON aluno.matricula = requerimento.aluno_matricula
+     
+-- 9. Tipos nunca solicitados (LEFT).
+SELECT * 
+    FROM tipo_requerimento
+WHERE id NOT IN (
+    -- Criação de um subconsulta que retorna todas FK de requerimento
+    SELECT tipo_requerimento_id FROM requerimento
+);
+
+-- Versão com Join
+SELECT 
+    tipo_requerimento.descricao
+FROM tipo_requerimento
+LEFT JOIN requerimento
+    ON tipo_requerimento.id = requerimento.tipo_requerimento_id
+WHERE requerimento.tipo_requerimento_id IS NULL
+
+-- 10. Requerimentos com nome do aluno e tipo.
+SELECT
+    usuario.nome,
+    usuario.cpf,
+    usuario.email,
+    requerimento.data_hora_abertura,
+    tipo_requerimento.descricao
+FROM usuario 
+INNER JOIN aluno
+    ON usuario.id = aluno.usuario_id
+LEFT JOIN requerimento
+    ON aluno.matricula = requerimento.aluno_matricula
+LEFT JOIN tipo_requerimento
+    ON tipo_requerimento.id = requerimento.tipo_requerimento_id;
+
+-- 11. Liste requerimentos deferidos com nome do aluno (INNER JOIN + WHERE).
+SELECT
+    aluno.matricula,
+    usuario.nome,
+    usuario.cpf,
+    tipo_requerimento.descricao,
+FROM usuario 
+INNER JOIN aluno
+    ON usuario.id = aluno.usuario_id
+INNER JOIN requerimento 
+    ON aluno.matricula = requerimento.aluno_matricula
+INNER JOIN tipo_requerimento
+    ON tipo_requerimento.id = requerimento.tipo_requerimento_id
+WHERE requerimento.status = 'DEFERIDO';
+
+-- Versão Com View
+-- Pense em VIEW como uma consulta salva no Banco
+-- Ela funciona como uma tabela visual
+-- Depois de Criada, é possível usar...
+-- SELECT * FROM qtde_requerimento_por_tipo;
+-- Porém, o banco não vai armazenar os dados da VIEW, apenas a sua Query
+-- Ou seja ===> sempre que a view for consultada, o banco executa essa consulta novamente.
+CREATE VIEW AS qtde_requerimento_por_tipo AS
+SELECT 
+    tipo_requerimento.id,
+    tipo_requerimento.descricao,
+    COUNT(requerimento.tipo_requerimento_id)
+FROM requerimento
+-- Com o INNER JOIN estamos relacionando: requerimento.tipo_requerimento_id --> tipo_requerimento.id
+-- Isso significa que ... > Cada requerimento pertence a um tipo
+INNER JOIN tipo_requerimento
+    ON (requerimento.tipo_requerimento_id = tipo_requerimento.id)
+-- O GROUP BY agrupa os registros para que o COUNT funcione
+GROUP BY 
+    tipo_requerimento.id,
+    tipo_requerimento.descricao,
+    requerimento.tipo_requerimento_id;
+
+-- 13. Liste alunos e quantidade de requerimentos (LEFT JOIN + GROUP BY).
+SELECT
+    usuario.nome,
+    usuario.cpf,
+    aluno.matricula,
+    COUNT(requerimento.id) AS quantidade_requerimento
+FROM usuario
+INNER JOIN aluno
+    ON usuario.id = aluno.usuario_id
+LEFT JOIN requerimento
+    ON aluno_matricula = requerimento.aluno_matricula
+LEFT JOIN tipo_requerimento
+    ON tipo_requerimento.id = requerimento.tipo_requerimento_id
+GROUP BY
+    usuario.nome,
+    usuario.cpf,
+    aluno.matricula;
+
+-- 14. Liste apenas alunos com mais de 1 requerimento (HAVING).
+SELECT
+    usuario.nome,
+    usuario.cpf,
+    aluno.matricula,
+    COUNT(requerimento.id) AS quantidade_requerimento
+FROM usuario
+INNER JOIN aluno
+    ON usuario.id = aluno.usuario_id
+LEFT JOIN requerimento
+    ON aluno_matricula = requerimento.aluno_matricula
+LEFT JOIN tipo_requerimento
+    ON tipo_requerimento.id = requerimento.tipo_requerimento_id
+GROUP BY
+    usuario.nome,
+    usuario.cpf,
+    aluno.matricula
+HAVING COUNT(requerimento.id) > 1;
