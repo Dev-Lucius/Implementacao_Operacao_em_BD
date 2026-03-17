@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <h1>📕 Sistema de Cursos</h1>
+    </header>
+
+    <!-- Main -->
+     <main>
+        <h2>📋 Lista de Cursos</h2>
+
+        <!-- Se houver cursos -->
+         {{#vetCurso}}
+         <ul>
+            {{#vetCurso}}
+            <li>
+                <span class="curso-id">#{{#id}}</span>
+                - {{#nome}}
+            </li>
+            {{/vetCurso}}
+         </ul>
+         {{/vetCurso}}
+
+         <!-- Se não houver Cursos -->
+          {{^vetCurso}}
+          <p class="empty">Nenhum Curso Cadastrado</p>
+          {{/vetCurso}}
+     </main>
+</body>
+</html>
