@@ -131,6 +131,13 @@ Os scripts presentes neste repositório simulam cenários comuns em sistemas rea
 - Material da disciplina
 - Modelagem de banco de dados relacional
 
+## 📚 Conteúdo Complementar
+
+Os **resumos teóricos, mapas conceituais e anotações detalhadas** da cadeira de **Implementação e Operação de Banco de Dados** estão disponíveis no meu Notion, com acesso no link abaixo:
+
+🔗 **Acesse aqui:** [Resumos da Cadeira no Notion](https://www.notion.so/3057c6764d48808ea350ee2b292cdbc9?v=3057c6764d488152852c000c8342eaf8&source=copy_link)
+
+
 ## 👨‍💻 Autor
 
 **Lucas Oliveira**
