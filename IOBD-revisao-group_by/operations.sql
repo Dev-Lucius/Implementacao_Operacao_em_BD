@@ -56,6 +56,7 @@ SELECT
         WHEN EXTRACT(YEAR FROM data_hora_abertura) = 10 THEN 'Outubro'
         WHEN EXTRACT(YEAR FROM data_hora_abertura) = 11 THEN 'Novembro'
         WHEN EXTRACT(YEAR FROM data_hora_abertura) = 12 THEN 'Dezembro'
+    END
     COUNT(*) AS quantidade
 FROM requerimento
 GROUP BY 
