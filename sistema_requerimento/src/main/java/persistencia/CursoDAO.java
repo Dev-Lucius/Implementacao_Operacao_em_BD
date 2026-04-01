@@ -35,7 +35,7 @@ public class CursoDAO {
             Connection connection = new ConexaoPostgreSQL().getConexao();
 
             // Prepara o comando SQL para execução
-            PreparedStatement stmt = connection.prepareStatement(sql)
+            PreparedStatement stmt = connection.prepareStatement(sql);
         ) {
 
             // Aqui substituímos os parâmetros (?) pelos valores do objeto Curso
