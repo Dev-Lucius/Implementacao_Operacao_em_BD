@@ -1,0 +1,11 @@
+C:\Users\W10\OneDrive\Desktop\banco de dados + JDBC + Javalin\demo\src\main\java\apresentacao\Main.java
+C:\Users\W10\OneDrive\Desktop\banco de dados + JDBC + Javalin\demo\src\main\java\negocio\Aluno.java
+C:\Users\W10\OneDrive\Desktop\banco de dados + JDBC + Javalin\demo\src\main\java\negocio\Curso.java
+C:\Users\W10\OneDrive\Desktop\banco de dados + JDBC + Javalin\demo\src\main\java\negocio\Requerimento.java
+C:\Users\W10\OneDrive\Desktop\banco de dados + JDBC + Javalin\demo\src\main\java\negocio\TipoRequerimento.java
+C:\Users\W10\OneDrive\Desktop\banco de dados + JDBC + Javalin\demo\src\main\java\persistencia\AlunoDAO.java
+C:\Users\W10\OneDrive\Desktop\banco de dados + JDBC + Javalin\demo\src\main\java\persistencia\ConexaoPostgresSQL.java
+C:\Users\W10\OneDrive\Desktop\banco de dados + JDBC + Javalin\demo\src\main\java\persistencia\CursoDAO.java
+C:\Users\W10\OneDrive\Desktop\banco de dados + JDBC + Javalin\demo\src\main\java\persistencia\Requerimento.java
+C:\Users\W10\OneDrive\Desktop\banco de dados + JDBC + Javalin\demo\src\main\java\persistencia\RequerimentoDAO.java
+C:\Users\W10\OneDrive\Desktop\banco de dados + JDBC + Javalin\demo\src\main\java\persistencia\SQLQLException.java
