@@ -27,28 +27,6 @@ Durante o desenvolvimento das atividades desta disciplina, foram trabalhadas as 
 - ✔ Aplicação de normalização
 - ✔ Desenvolvimento de lógica dentro do banco de dados
 
-## 🏗️ Estrutura do Repositório
-
-```
-📦 database-implementation-course
- ┣ 📂 docs
- ┃ ┣ modelo-relacional.md
- ┃ ┣ normalizacao.md
- ┃ ┗ conceitos-sql.md
- ┣ 📂 scripts
- ┃ ┣ ddl
- ┃ ┃ ┗ create_tables.sql
- ┃ ┣ dml
- ┃ ┃ ┗ insert_data.sql
- ┃ ┗ queries
- ┃ ┃ ┗ consultas.sql
- ┣ 📂 procedures
- ┃ ┗ procedures.sql
- ┣ 📂 triggers
- ┃ ┗ triggers.sql
- ┗ README.md
-```
-
 ## 🗃️ Modelo Relacional
 
 O modelo relacional organiza os dados em tabelas compostas por:
