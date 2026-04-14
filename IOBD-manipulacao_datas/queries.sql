@@ -12,7 +12,7 @@ WHERE DATE(data_hora_abertura) = CURRENT_DATE;
 -- 58. Requerimentos últimos 30 dias.
 SELECT * 
 FROM requerimento
--- Aqui, INTERVAÇ '30 days' cria um Intervalo de tempo de 30 dias
+-- Aqui, INTERVAL '30 days' cria um Intervalo de tempo de 30 dias
 -- No Psql, ele é usado para fazer operações com datas e horas
 -- WHERE data_hora_abertura CURRENT_DATE - INTERVAL '30 days' ==> traga apenas requerimentos abertos a partir dos últimos 30 dias
 -- a Subtração " CURRENT_DATE - INTERVAL '30 days' " garante que essa condição se satisfaça
