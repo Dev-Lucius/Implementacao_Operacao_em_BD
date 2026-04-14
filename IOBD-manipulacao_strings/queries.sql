@@ -10,17 +10,20 @@ WHERE nome ILIKE '%João%';
 SELECT
     id,
     cpf,
-    UPPER(nome)
+    UPPER(nome) AS nome_upper
 FROM usuario;
 
 -- 73. Lowercase -->
 SELECT
     id,
     cpf,
-    LOWER(nome)
+    LOWER(nome) AS nome_lower
 FROM usuario;
 
 -- 74. Tamanho do nome -->
+-- OBSERVAÇÃO!!
+-- Vale lembrar que LENGTH(NULL) retorna NULL — se quiser tratar:
+-- LENGTH(COALESCE(nome, '')) AS tamanho_nome
 SELECT
     id,
     cpf,
@@ -50,7 +53,7 @@ SELECT
     nome,
     -- Retorna uma Substring do CPF
     -- Desde o índice 5 até o índice 11
-    SUBSTRING(cpf, 5, 11)
+    SUBSTRING(cpf, 5, 11) AS substring_cpf
 FROM usuario;
 
 -- 77. REPLACE no nome -->
@@ -68,15 +71,20 @@ FROM usuario;
 
 -- 78. TRIM
 -- TRIM é uma ferramenta de manipulação de texto usada para remover espaços em branco ou caracteres específicos do início, do fim, ou de ambos os lados de uma string
--- Remover Espaços (Padrão): Por padrão, TRIM(campo) ==> remove todos os espaços em branco no início e no fim.
--- Remover Caracteres Específicos: Você pode remover caracteres específicos, ex: TRIM('x' FROM 'xxDataxx') retorna "Data".Opções de Direção:
--- BOTH (Padrão): Remove dos dois lados.
--- LEADING: Remove apenas do início.
--- TRAILING: Remove apenas do fim.
--- SINATEXE: 
-/*
-    TRIM([LEADING | TRAILING | BOTH] [caracteres] FROM string).
-*/
+-- Variações !!!
+-- Remove espaços dos dois lados (uso mais comum)
+TRIM(nome)
+
+-- Remove apenas do início
+LTRIM(nome)
+
+-- Remove apenas do fim
+RTRIM(nome)
+
+-- Remove caractere específico de ambos os lados
+TRIM(BOTH 'a' FROM nome)
+
+-- Consulta do Exercício
 SELECT 
     id,
     nome,
