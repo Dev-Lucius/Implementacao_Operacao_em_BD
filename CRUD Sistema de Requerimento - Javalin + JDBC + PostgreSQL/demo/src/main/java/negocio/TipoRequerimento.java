@@ -2,35 +2,41 @@ package negocio;
 
 public class TipoRequerimento {
 
-    // SERIAL PRIMARY KEY → contador estático, gerado automaticamente
     private static int proximoId = 1;
-    private final int id;
-    // TEXT NOT NULL → obrigatório e imutável
+    private int id; // removido o final para permitir setId()
     private final String descricao;
 
     /**
-     * Construtor do TipoRequerimento.
-     * O ID é gerado automaticamente.
-     *
-     * @param descricao Descrição do tipo. Não pode ser nula ou vazia.
+     * Construtor para uso da aplicação.
+     * ID gerado pelo contador estático
      */
     public TipoRequerimento(String descricao) {
         this.id        = proximoId++;
         this.descricao = validarDescricao(descricao);
     }
 
-    // VALIDADOR PRIVADO
+    /**
+     * Construtor para uso exclusivo do DAO.
+     * Restaura um objeto com o id real vindo do banco,
+     * sem incrementar o contador estático.
+     */
+    public TipoRequerimento(int id, String descricao) {
+        this.id        = id;
+        this.descricao = validarDescricao(descricao);
+    }
+
     private String validarDescricao(String descricao) {
         if (descricao == null || descricao.trim().isEmpty())
             throw new IllegalArgumentException("Descrição inválida: não pode ser nula ou vazia.");
         return descricao.trim();
     }
 
-    // GETTERS
+    // Necessário para o inserir() do DAO setar o id gerado pelo SERIAL
+    public void setId(int id) { this.id = id; }
+
     public int    getId()        { return id; }
     public String getDescricao() { return descricao; }
 
-    // toString()
     @Override
     public String toString() {
         return "TipoRequerimento #" + id + " | " + descricao;
