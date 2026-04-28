@@ -3,9 +3,9 @@ package negocio;
 import java.time.LocalDate;
 import java.time.Period;
 
-public class Usuario {
+public final class Usuario {
 
-    private static int proximoId = 1; //
+    private static int proximoId = 1;
     private final int id;
 
     private final String nome;   // NOT NULL → final
@@ -44,25 +44,25 @@ public class Usuario {
     }
 
     // MÉTODO DE VALIDAÇÃO
-    private String validarObrigatorio(String valor, String campo) {
+    public String validarObrigatorio(String valor, String campo) {
         if (valor == null || valor.trim().isEmpty())
             throw new IllegalArgumentException(campo + " inválido: não pode ser nulo ou vazio.");
         return valor.trim();
     }
 
 
-    private String validarEmail(String email) {
+    public String validarEmail(String email) {
         if (email == null || email.trim().isEmpty())
             throw new IllegalArgumentException("Email inválido: não pode ser nulo ou vazio.");
         String e = email.trim().toLowerCase();
         int arroba = e.indexOf("@");
         if (arroba < 1 || !e.substring(arroba).contains("."))
             throw new IllegalArgumentException("Email inválido: formato incorreto.");
-        return e;
+        return email;
     }
 
 
-    private String validarCpf(String cpf) {
+    public String validarCpf(String cpf) {
         if (cpf == null || cpf.trim().isEmpty())
             throw new IllegalArgumentException("CPF inválido: não pode ser nulo ou vazio.");
         // replaceAll --> substitui todas as ocorrências de um padrão específico, definido por uma Expressão Regular (regex), 
@@ -77,7 +77,7 @@ public class Usuario {
         return digitos;
     }
 
-    private LocalDate validarDataNascimento(LocalDate data) {
+    public LocalDate validarDataNascimento(LocalDate data) {
         if (data == null)
             throw new IllegalArgumentException("Data de nascimento não pode ser nula.");
         if (data.isAfter(LocalDate.now()))
@@ -85,7 +85,7 @@ public class Usuario {
         return data;
     }
 
-    private String validarCep(String cep) {
+    public String validarCep(String cep) {
         if (cep == null) return null;
         String digitos = cep.replaceAll("[^0-9]", "");
         if (digitos.length() != 8)
@@ -150,5 +150,10 @@ public class Usuario {
                " | Nome: "  + nome +
                " | Email: " + email +
                " | Idade: " + getIdade() + " anos";
+    }
+
+    public void setId(int int1) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setId'");
     }
 }
