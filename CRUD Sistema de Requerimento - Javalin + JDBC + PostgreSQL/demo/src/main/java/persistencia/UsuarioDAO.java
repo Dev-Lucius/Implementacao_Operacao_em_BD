@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import negocio.Usuario;
 
@@ -66,7 +68,7 @@ public class UsuarioDAO {
         ){
             stmt.setInt(1, id);
             if(rs.next()){
-                return mapearResultSet(rs);
+                return mapearUsuario(rs);
             }
         } catch(SQLException e){
 
@@ -75,7 +77,7 @@ public class UsuarioDAO {
     }
 
     // Método para Atualizar um Usuário
-    public void AtualizarUsuario(Usuario usuario){
+    public boolean AtualizarUsuario(Usuario usuario){
         String sql = "UPDATE usuario set nome = ?, email = ?, cpf = ?, data_nascimento = ?, cep = ?, complemento = ?, numero = ? WHERE id = ?";
 
         try(
@@ -91,6 +93,8 @@ public class UsuarioDAO {
             stmt.setString(7, usuario.getNumero());
 
             stmt.executeQuery();
+            return true;
+            
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao Atualizar um Usuário Por Id: " + e.getMessage(), e);
         }
@@ -112,8 +116,27 @@ public class UsuarioDAO {
         }
     }
 
+    public List<Usuario> listarUsuarios() {
+        List<Usuario> usuarios = new ArrayList<>();
+        String sql = "SELECT * FROM usuario ORDER BY nome ASC";
+
+        try(
+            Connection connection = new ConexaoPostgreSQL().getConexao();
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+        ){
+            while(rs.next()){
+                usuarios.add(mapearUsuario(rs));
+            }
+        } catch(SQLException e){
+            throw new RuntimeException("Erro ao Listar Usuários: " + e.getMessage(), e);
+        }
+
+        return usuarios;
+    }
+
     // Método de Mapeamento
-    public Usuario mapearResultSet(ResultSet rs) throws SQLException{
+    public Usuario mapearUsuario(ResultSet rs) throws SQLException{
         Usuario u = new Usuario(
             rs.getString("nome"), 
             rs.getString("email"), 
