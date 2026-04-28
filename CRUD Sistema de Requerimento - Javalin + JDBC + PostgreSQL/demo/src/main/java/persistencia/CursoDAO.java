@@ -38,7 +38,7 @@ public class CursoDAO{
      * 
      * @param curso Objeto com dados a inserir
      */
-    public void inserirCurso(Curso curso){
+    public boolean inserirCurso(Curso curso){
         if(curso == null){
             throw new IllegalArgumentException("Curso Inválido: Não pode ser Nulo");
         }
@@ -59,6 +59,7 @@ public class CursoDAO{
             stmt.setInt(4, curso.getId());
 
             stmt.executeUpdate();
+            return true;
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao Inserir Curso: " + e.getMessage(), e);
@@ -115,7 +116,7 @@ public class CursoDAO{
         return null; // Não Encontrado
     }
 
-    public void atualizarCurso(Curso curso){
+    public boolean atualizarCurso(Curso curso){
         if(curso == null){
             throw new IllegalArgumentException("Curso Inválido: Não pode ser nulo");
         }
@@ -133,6 +134,7 @@ public class CursoDAO{
             stmt.setInt(5, curso.getId());
 
             stmt.executeUpdate();
+            return true;
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao Atualizar Curso: " + e.getMessage(), e);
