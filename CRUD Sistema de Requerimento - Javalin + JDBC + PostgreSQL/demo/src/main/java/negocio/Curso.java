@@ -14,7 +14,7 @@ package negocio;
  * Curso não referencia nenhuma outra tabela — é o ponto
  * de partida da hierarquia. Por isso é implementada primeiro.
  */
-public class Curso {
+public final class Curso {
 
     // SERIAL PRIMARY KEY → contador estático
     private static int proximoId = 1;
@@ -57,7 +57,7 @@ public class Curso {
         this.duracao = duracao;
     }
 
-    private String validarTexto(String valor, String campo) {
+    public String validarTexto(String valor, String campo) {
         if (valor == null || valor.trim().isEmpty())
             throw new IllegalArgumentException(campo + " inválido: não pode ser nulo ou vazio.");
         return valor.trim();
