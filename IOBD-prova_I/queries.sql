@@ -23,11 +23,11 @@ WITH ranking_clientes AS (
     WHERE pd.cliente_id IS NOT NULL
     GROUP BY nome_cliente, pedido_status
     HAVING SUM(pr.preco * ip.quantidade) IS NOT NULL AND COUNT(pd.id) >= 1
-    ORDER BY SUM(pr.preco * ip.quantidade) DESC
 )
 -- chamando a CTE ranking_cliente
 SELECT * 
-FROM ranking_clientes;
+FROM ranking_clientes
+ORDER BY SUM(pr.preco * ip.quantidade) DESC;
 
 
 -- 3. Produtos Acima da Média
@@ -54,8 +54,8 @@ LEFT JOIN item_pedido ip
     ON pd.id = ip.pedido_id
 LEFT JOIN produto pr
     ON pr.id = ip.produto_id
-GROUP BY pd.id, pr.preco, ip.quantidade
-ORDER BY pr.preco ASC;
+GROUP BY pd.id, pd.status
+ORDER BY SUM(pr.preco * ip.quantidade) ASC;
 
 
 -- 5. Pedidos com mais de um Produto
@@ -69,5 +69,6 @@ LEFT JOIN item_pedido ip
     ON pd.id = ip.pedido_id
 LEFT JOIN produto pr
     ON pr.id = ip.produto_id
-GROUP BY pd.id, pd.status, ip.quantidade
+GROUP BY pd.id, pd.status
+HAVING COUNT(pr.id) > 1
 ORDER BY COUNT(pr.id) ASC;
