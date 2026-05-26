@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Cursos</title>
+
+<style>
+/* Variáveis de ambiente para centralizar o tema visual */
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea, #764ba2);
+  --primary-color: #667eea;
+  --primary-hover: #f1f3ff;
+  
+  --color-danger: #ff4d4d;
+  --color-danger-hover: #e60000;
+  --color-edit: #f0a500;
+  --color-edit-hover: #d48f00;
+  
+  --text-dark: #333;
+  --text-light: #fff;
+  
+  --shadow-normal: 0 10px 25px rgba(0, 0, 0, 0.15);
+  --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.25);
+  
+  --transition-default: 0.3s ease;
+}
+
+/* Reset básico e Body */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--primary-gradient);
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+/* Título */
+.titulo {
+  text-align: center;
+  color: var(--text-light);
+  margin-bottom: 35px;
+}
+
+/* Botão principal (Adicionar) */
+.botao-adicionar {
+  display: block;
+  width: 220px;
+  margin: 0 auto 25px auto;
+  text-align: center;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--text-light);
+  color: var(--primary-color);
+  font-weight: bold;
+  text-decoration: none;
+  transition: var(--transition-default);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.botao-adicionar:hover {
+  background: var(--primary-hover);
+  transform: scale(1.05);
+}
+
+/* Container da Lista */
+.lista-cursos {
+  list-style: none;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Item da Lista (Card) */
+.lista-cursos li {
+  background: var(--text-light);
+  margin-bottom: 15px;
+  padding: 18px;
+  border-radius: 14px;
+  font-size: 18px;
+  color: var(--text-dark);
+  box-shadow: var(--shadow-normal);
+  transition: var(--transition-default);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.lista-cursos li:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Informações do Curso (Esquerda) */
+.info-curso {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nome-curso {
+  font-weight: bold;
+}
+
+.badge {
+  background: var(--primary-color);
+  color: var(--text-light);
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* Container de Ações (Direita) */
+.acoes-curso {
+  display: flex;
+  gap: 8px;
+}
+
+/* Botões Genéricos e Modificadores */
+.btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: var(--transition-default);
+  white-space: nowrap;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.btn-danger {
+  background: var(--color-danger);
+  color: var(--text-light);
+}
+
+.btn-danger:hover {
+  background: var(--color-danger-hover);
+}
+
+.btn-edit {
+  background: var(--color-edit);
+  color: var(--text-light);
+}
+
+.btn-edit:hover {
+  background: var(--color-edit-hover);
+}
+
+/* Links de Navegação do Rodapé */
+.rodape-links {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.rodape-links a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 14px;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.rodape-links a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+</style>
+
+</head>
+<body>
+
+{{teste}}
+<h1 class="titulo">Lista de Cursos</h1>
+
+<a class="botao-adicionar" href="/curso/tela_adicionar">+ Adicionar Curso</a>
+
+<ul class="lista-cursos">
+  {{#vetCurso}}
+    <li>
+        <div class="info-curso">
+            <span class="badge">ID {{id}}</span>
+            <span class="nome-curso">{{nome}}</span>
+        </div>
+
+        <div class="acoes-curso">
+            <a class="btn btn-edit" href="/curso/tela_alterar/{{id}}">Alterar</a>
+            <a class="btn btn-danger" href="/curso/excluir/{{id}}">Excluir</a>
+        </div>
+    </li>
+  {{/vetCurso}}
+</ul>
+
+<div class="rodape-links">
+    <a href="/usuarios">Usuários</a>
+    <a href="/novo_requerimento">Novo Requerimento</a>
+    <a href="/requerimento">Requerimento</a>
+</div>
+
+</body>
+</html>

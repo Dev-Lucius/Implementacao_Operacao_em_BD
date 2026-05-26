@@ -1,0 +1,15 @@
+negocio\Status.class
+persistencia\RequerimentoDAO.class
+negocio\Aluno.class
+negocio\TipoRequerimento.class
+negocio\Requerimento.class
+persistencia\ConexaoPostgreSQL.class
+persistencia\CursoDAO.class
+negocio\Curso.class
+apresentacao\MainDesktop.class
+negocio\Usuario.class
+persistencia\AlunoDAO.class
+persistencia\UsuarioDAO.class
+apresentacao\Main.class
+negocio\StatusAluno.class
+persistencia\TipoRequerimentoDAO.class

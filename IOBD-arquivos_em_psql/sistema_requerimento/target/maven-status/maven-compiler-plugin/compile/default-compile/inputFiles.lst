@@ -1,0 +1,15 @@
+C:\Users\W10\OneDrive\Desktop\Implementação e Operação em Banco de Dados\IOBD-arquivos_em_psql\sistema_requerimento\src\main\java\apresentacao\Main.java
+C:\Users\W10\OneDrive\Desktop\Implementação e Operação em Banco de Dados\IOBD-arquivos_em_psql\sistema_requerimento\src\main\java\apresentacao\MainDesktop.java
+C:\Users\W10\OneDrive\Desktop\Implementação e Operação em Banco de Dados\IOBD-arquivos_em_psql\sistema_requerimento\src\main\java\negocio\Aluno.java
+C:\Users\W10\OneDrive\Desktop\Implementação e Operação em Banco de Dados\IOBD-arquivos_em_psql\sistema_requerimento\src\main\java\negocio\Curso.java
+C:\Users\W10\OneDrive\Desktop\Implementação e Operação em Banco de Dados\IOBD-arquivos_em_psql\sistema_requerimento\src\main\java\negocio\Requerimento.java
+C:\Users\W10\OneDrive\Desktop\Implementação e Operação em Banco de Dados\IOBD-arquivos_em_psql\sistema_requerimento\src\main\java\negocio\Status.java
+C:\Users\W10\OneDrive\Desktop\Implementação e Operação em Banco de Dados\IOBD-arquivos_em_psql\sistema_requerimento\src\main\java\negocio\StatusAluno.java
+C:\Users\W10\OneDrive\Desktop\Implementação e Operação em Banco de Dados\IOBD-arquivos_em_psql\sistema_requerimento\src\main\java\negocio\TipoRequerimento.java
+C:\Users\W10\OneDrive\Desktop\Implementação e Operação em Banco de Dados\IOBD-arquivos_em_psql\sistema_requerimento\src\main\java\negocio\Usuario.java
+C:\Users\W10\OneDrive\Desktop\Implementação e Operação em Banco de Dados\IOBD-arquivos_em_psql\sistema_requerimento\src\main\java\persistencia\AlunoDAO.java
+C:\Users\W10\OneDrive\Desktop\Implementação e Operação em Banco de Dados\IOBD-arquivos_em_psql\sistema_requerimento\src\main\java\persistencia\ConexaoPostgreSQL.java
+C:\Users\W10\OneDrive\Desktop\Implementação e Operação em Banco de Dados\IOBD-arquivos_em_psql\sistema_requerimento\src\main\java\persistencia\CursoDAO.java
+C:\Users\W10\OneDrive\Desktop\Implementação e Operação em Banco de Dados\IOBD-arquivos_em_psql\sistema_requerimento\src\main\java\persistencia\RequerimentoDAO.java
+C:\Users\W10\OneDrive\Desktop\Implementação e Operação em Banco de Dados\IOBD-arquivos_em_psql\sistema_requerimento\src\main\java\persistencia\TipoRequerimentoDAO.java
+C:\Users\W10\OneDrive\Desktop\Implementação e Operação em Banco de Dados\IOBD-arquivos_em_psql\sistema_requerimento\src\main\java\persistencia\UsuarioDAO.java
