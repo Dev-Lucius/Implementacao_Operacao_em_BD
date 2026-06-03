@@ -1,4 +1,4 @@
-# ## ✅ **O que é DCL (Data Control Language)?**
+# ✅ **O que é DCL (Data Control Language)?**
 
 DCL (Data Control Language) é um subconjunto da SQL responsável **por controlar os acessos dos usuários ao banco de dados** — ou seja, quem pode ver, alterar, ou gerenciar quais objetos (tabelas, views, schemas, funções etc.).
 
